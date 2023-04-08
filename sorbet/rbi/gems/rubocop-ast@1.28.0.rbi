@@ -420,18 +420,18 @@ class RuboCop::AST::Builder < ::Parser::Builders::Default
   #
   # @return [Node] the generated node
   #
-  # source://rubocop-ast//lib/rubocop/ast/builder.rb#97
+  # source://rubocop-ast//lib/rubocop/ast/builder.rb#98
   def n(type, children, source_map); end
 
   # TODO: Figure out what to do about literal encoding handling...
   # More details here https://github.com/whitequark/parser/issues/283
   #
-  # source://rubocop-ast//lib/rubocop/ast/builder.rb#103
+  # source://rubocop-ast//lib/rubocop/ast/builder.rb#104
   def string_value(token); end
 
   private
 
-  # source://rubocop-ast//lib/rubocop/ast/builder.rb#109
+  # source://rubocop-ast//lib/rubocop/ast/builder.rb#110
   def node_klass(type); end
 end
 
@@ -1898,9 +1898,9 @@ class RuboCop::AST::IntNode < ::RuboCop::AST::Node
   include ::RuboCop::AST::NumericNode
 end
 
-# A node extension for `kwsplat` nodes. This will be used in place of a
-# plain  node when the builder constructs the AST, making its methods
-# available to all `kwsplat` nodes within RuboCop.
+# A node extension for `kwsplat` and `forwarded_kwrestarg` nodes. This will be used in
+# place of a plain node when the builder constructs the AST, making its methods available to
+# all `kwsplat` and `forwarded_kwrestarg` nodes within RuboCop.
 #
 # source://rubocop-ast//lib/rubocop/ast/node/keyword_splat_node.rb#8
 class RuboCop::AST::KeywordSplatNode < ::RuboCop::AST::Node
@@ -1921,6 +1921,13 @@ class RuboCop::AST::KeywordSplatNode < ::RuboCop::AST::Node
   #
   # source://rubocop-ast//lib/rubocop/ast/node/keyword_splat_node.rb#18
   def hash_rocket?; end
+
+  # This provides `forwarded_kwrestarg` node to return true to be compatible with `kwsplat` node.
+  #
+  # @return [true]
+  #
+  # source://rubocop-ast//lib/rubocop/ast/node/keyword_splat_node.rb#48
+  def kwsplat_type?; end
 
   # Custom destructuring method. This is used to normalize the branches
   # for `pair` and `kwsplat` nodes, to add duck typing to `hash` elements.

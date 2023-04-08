@@ -4158,7 +4158,7 @@ end
 # @private
 #
 # source://rspec-expectations//lib/rspec/matchers/built_in/output.rb#179
-class RSpec::Matchers::BuiltIn::CaptureStreamToTempfile < ::Anonymous_Struct_3
+class RSpec::Matchers::BuiltIn::CaptureStreamToTempfile < ::Struct
   # source://rspec-expectations//lib/rspec/matchers/built_in/output.rb#180
   def capture(block); end
 end
@@ -5552,7 +5552,7 @@ end
 # @api private
 #
 # source://rspec-expectations//lib/rspec/matchers/built_in/exist.rb#43
-class RSpec::Matchers::BuiltIn::Exist::ExistenceTest < ::Anonymous_Struct_2
+class RSpec::Matchers::BuiltIn::Exist::ExistenceTest < ::Struct
   # @api private
   # @return [Boolean]
   #

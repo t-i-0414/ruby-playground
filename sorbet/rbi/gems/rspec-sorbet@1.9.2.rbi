@@ -82,46 +82,82 @@ end
 
 # source://rspec-sorbet//lib/rspec/sorbet/doubles.rb#8
 module RSpec::Sorbet::Doubles
-  # source://rspec-sorbet//lib/rspec/sorbet/doubles.rb#9
+  requires_ancestor { Kernel }
+
+  # source://rspec-sorbet//lib/rspec/sorbet/doubles.rb#15
+  sig { void }
   def allow_doubles!; end
 
-  # source://rspec-sorbet//lib/rspec/sorbet/doubles.rb#9
-  def allow_instance_doubles!; end
+  # @return [void]
+  #
+  # source://sorbet-runtime/0.5.10761/lib/types/private/methods/_methods.rb#255
+  def allow_instance_doubles!(*args, **_arg1, &blk); end
+
+  # source://rspec-sorbet//lib/rspec/sorbet/doubles.rb#36
+  sig { params(clear_existing: T::Boolean).void }
+  def reset!(clear_existing: T.unsafe(nil)); end
 
   private
 
-  # source://rspec-sorbet//lib/rspec/sorbet/doubles.rb#87
+  # source://rspec-sorbet//lib/rspec/sorbet/doubles.rb#139
+  sig { params(signature: T.untyped, opts: T::Hash[T.untyped, T.untyped]).void }
   def call_validation_error_handler(signature, opts); end
 
-  # @return [Boolean]
+  # source://rspec-sorbet//lib/rspec/sorbet/doubles.rb#65
+  sig { returns(T.nilable(T::Boolean)) }
+  def configured; end
+
+  # @return [Boolean, nil]
   #
-  # source://rspec-sorbet//lib/rspec/sorbet/doubles.rb#77
+  # source://rspec-sorbet//lib/rspec/sorbet/doubles.rb#65
+  def configured=(_arg0); end
+
+  # source://rspec-sorbet//lib/rspec/sorbet/doubles.rb#127
+  sig { params(message: ::String).returns(T::Boolean) }
   def double_message_with_ellipsis?(message); end
+
+  # source://rspec-sorbet//lib/rspec/sorbet/doubles.rb#62
+  sig { returns(T.nilable(T.proc.params(signature: T.untyped, opts: T::Hash[T.untyped, T.untyped]).void)) }
+  def existing_call_validation_error_handler; end
+
+  # @return [T.proc.params(signature: T.untyped, opts: T::Hash[T.untyped, T.untyped]).void, nil]
+  #
+  # source://rspec-sorbet//lib/rspec/sorbet/doubles.rb#62
+  def existing_call_validation_error_handler=(_arg0); end
+
+  # source://rspec-sorbet//lib/rspec/sorbet/doubles.rb#59
+  sig { returns(T.nilable(T.proc.params(signature: ::Exception).void)) }
+  def existing_inline_type_error_handler; end
+
+  # @return [T.proc.params(signature: Exception).void, nil]
+  #
+  # source://rspec-sorbet//lib/rspec/sorbet/doubles.rb#59
+  def existing_inline_type_error_handler=(_arg0); end
 
   # @raise [TypeError]
   #
-  # source://rspec-sorbet//lib/rspec/sorbet/doubles.rb#29
+  # source://rspec-sorbet//lib/rspec/sorbet/doubles.rb#73
+  sig { params(signature: T.untyped, opts: T.untyped).void }
   def handle_call_validation_error(signature, opts); end
 
-  # source://rspec-sorbet//lib/rspec/sorbet/doubles.rb#35
+  # source://rspec-sorbet//lib/rspec/sorbet/doubles.rb#80
+  sig { params(error: ::Exception).void }
   def inline_type_error_handler(error); end
 
-  # @return [Boolean]
-  #
-  # source://rspec-sorbet//lib/rspec/sorbet/doubles.rb#83
+  # source://rspec-sorbet//lib/rspec/sorbet/doubles.rb#134
+  sig { params(message: ::String).returns(T::Boolean) }
   def typed_array_message?(message); end
 
-  # @return [Boolean]
-  #
-  # source://rspec-sorbet//lib/rspec/sorbet/doubles.rb#69
+  # source://rspec-sorbet//lib/rspec/sorbet/doubles.rb#118
+  sig { params(message: ::String).returns(T::Boolean) }
   def unable_to_check_type_for_message?(message); end
 end
 
-# source://rspec-sorbet//lib/rspec/sorbet/doubles.rb#25
+# source://rspec-sorbet//lib/rspec/sorbet/doubles.rb#68
 RSpec::Sorbet::Doubles::INLINE_DOUBLE_REGEX = T.let(T.unsafe(nil), Regexp)
 
-# source://rspec-sorbet//lib/rspec/sorbet/doubles.rb#81
+# source://rspec-sorbet//lib/rspec/sorbet/doubles.rb#131
 RSpec::Sorbet::Doubles::TYPED_ARRAY_MESSAGE = T.let(T.unsafe(nil), Regexp)
 
-# source://rspec-sorbet//lib/rspec/sorbet/doubles.rb#74
+# source://rspec-sorbet//lib/rspec/sorbet/doubles.rb#123
 RSpec::Sorbet::Doubles::VERIFYING_DOUBLE_OR_DOUBLE = T.let(T.unsafe(nil), Regexp)
